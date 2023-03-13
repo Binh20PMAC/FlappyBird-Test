@@ -1,8 +1,8 @@
 # FlappyBird-Test
 
 - Chưa làm Design Pattern
-- Đã làm Cooldown skill SlowBird
 - Chưa làm mục tiêu để tiêu diệt
+- Đã làm Cooldown skill SlowBird
 - Đã làm đạn pool
 - Đã làm đạn check Pipe List
 - Đã làm Dash
