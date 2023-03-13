@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,10 +18,15 @@ public class NormalBird : MonoBehaviour
     private float angel;
 
     [SerializeField]
-    private float cooldown;
+    private float cooldown = 5f;
 
     [SerializeField]
     private Image CircleCooldown;
+
+    [SerializeField]
+    private TMP_Text time;
+
+    private float second = 5f;
 
     float last;
 
@@ -30,12 +37,21 @@ public class NormalBird : MonoBehaviour
 
         if (PlayerPrefs.GetInt("selectedOptions") == 1)
         {
-
             if (Input.GetKey(KeyCode.Q))
             {
-                StartCoroutine(Timer());
-
+                if (Input.GetKey(KeyCode.Q) && CircleCooldown.fillAmount < 0.99f)
+                {
+                    StartCoroutine(Timer());
+                    CircleCooldown.fillAmount += 5 / cooldown * Time.deltaTime;
+                    second = CircleCooldown.fillAmount * 5f;
+                }
             }
+            else
+            {
+                CircleCooldown.fillAmount -= 1 / cooldown * Time.deltaTime;
+                second -= 5 / cooldown * Time.deltaTime;
+            }
+           
         }
         if (PlayerPrefs.GetInt("selectedOptions") == 2)
         {
@@ -44,11 +60,22 @@ public class NormalBird : MonoBehaviour
                 {
                     StartCoroutine(Dash());
                     CircleCooldown.fillAmount = 1f;
+                    second = 5f;
                 }
+            second -= 5 / cooldown * Time.deltaTime;
+            CircleCooldown.fillAmount -= 1 / cooldown * Time.deltaTime;
         }
-       
 
-        CircleCooldown.fillAmount -= Time.deltaTime * 0.2f;
+        
+        time.text = Mathf.Round(second).ToString();
+        if(second <= 0)
+        {
+
+            time.gameObject.SetActive(false);
+        }
+        else
+            time.gameObject.SetActive(true);
+
     }
     public virtual void BirdJump(GameObject bird)
     {
