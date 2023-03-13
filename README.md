@@ -10,3 +10,9 @@
 - Đã làm Cooldown skill SlowBird
 - Đã làm Bird check Pipe List
 
+
+- Ấn F để bắn
+- Ấn Q để sài skill
+ + Yellow Bird giữ Q để slow
+ + Blue Bird ấn Q để dash
+ + Red Bird không có skill chỉ có thể bắn
