@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: New Character Database
   m_EditorClassIdentifier: 
   character:
-  - characterName: Red Bird
+  - characterName: Red Bird (Normal)
     characterSprite: {fileID: -697644037, guid: 7613d1e0832ab7a48ac774b718a0ba80, type: 3}
     characterAnim: {fileID: 9100000, guid: aa5e4fd6a53578645a3509e513e15e00, type: 2}
-  - characterName: Yellow Bird
+  - characterName: Yellow Bird (Skill slow)
     characterSprite: {fileID: -516675769, guid: 7613d1e0832ab7a48ac774b718a0ba80, type: 3}
     characterAnim: {fileID: 9100000, guid: f1de03bcf29312446a5d5f23411bba32, type: 2}
-  - characterName: Blue Bird
+  - characterName: Blue Bird (Skill dash)
     characterSprite: {fileID: 17612531, guid: 7613d1e0832ab7a48ac774b718a0ba80, type: 3}
     characterAnim: {fileID: 9100000, guid: a8f3045ba980b8948afa56f9c7f58ba5, type: 2}
