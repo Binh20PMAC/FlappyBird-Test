@@ -110,9 +110,9 @@ public class NormalBird : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (Time.time - last < cooldown)
-            { return; }
-            last = Time.time;
+            //if (Time.time - last < cooldown)
+            //{ return; }
+            //last = Time.time;
 
             GameObject bullet = BulletPool.instance.GetPooledObject();
 
