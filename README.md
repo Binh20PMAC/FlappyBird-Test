@@ -1,7 +1,7 @@
 # FlappyBird-Test
 
 - Chưa làm Design Pattern
-- Chưa làm mục tiêu để tiêu diệt
+- Đã làm mục tiêu để tiêu diệt
 - Đã làm đạn pool
 - Đã làm đạn check Pipe List
 - Đã làm Dash
