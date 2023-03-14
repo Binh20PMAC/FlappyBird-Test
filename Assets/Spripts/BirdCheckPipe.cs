@@ -13,12 +13,19 @@ public class BirdCheckPipe : MonoBehaviour
     private List<GameObject> Pipe_up;
     [SerializeField]
     private List<GameObject> Pipe_down;
+    [SerializeField]
+    private List<GameObject> Stone;
 
     private float SpaceBird;
 
     private float dirPipeUpLeft;
     private float dirPipeUpRight;
     private float dirPipeUpCenter;
+
+    private float dirStoneLeft;
+    private float dirStoneRight;
+    private float dirStoneTop;
+    private float dirStoneBottom;
 
     private float dirPipeDownLeft;
     private float dirPipeDownRight;
@@ -30,6 +37,7 @@ public class BirdCheckPipe : MonoBehaviour
     private float dirRight;
 
     int count = 0;
+    int countSpawnStone = 0;
 
     private void Update()
     {
@@ -42,7 +50,7 @@ public class BirdCheckPipe : MonoBehaviour
         //SpaceBird = transform.position.x + 3;
         SpaceBird = Space(transform, 3f);
 
-        if (Pipe_up[count].transform.position.x < dirLeft - 1f)
+        if (Pipe_up[count].transform.position.x < dirLeft - 2f)
         {
             count++;
             if (count == 3)
@@ -51,13 +59,29 @@ public class BirdCheckPipe : MonoBehaviour
             }
         }
 
+        if (Pipe_up[countSpawnStone].transform.position.x < dirLeft - 3.5f)
+        {
+            countSpawnStone++;
+            if (countSpawnStone == 3)
+            {
+                countSpawnStone = 0;
+            }
+
+            Spawn_Stone(countSpawnStone);
+        }
+
         Debug.Log(count);
 
         if (Pipe_up[count].transform.position.x < SpaceBird && Pipe_up[count].transform.position.x > dirLeft - 1f)
         {
             CheckPipeUp(0.6f, 0.6f);
             CheckPipeDown(0.6f, 0.6f);
+            if (Stone[count].activeInHierarchy)
+            {
+                CheckStone(0.6f, 0.6f, 0.6f, 0.6f);
+            }
         }
+
 
     }
 
@@ -102,7 +126,45 @@ public class BirdCheckPipe : MonoBehaviour
             GameButton.SetActive(true);
         }
     }
-    
+
+    private void CheckStone(float top, float bottom, float left, float right)
+    {
+        dirStoneLeft = Stone[count].transform.position.x - left;
+        dirStoneRight = Stone[count].transform.position.x + right;
+        dirStoneTop = Stone[count].transform.position.y + top;
+        dirStoneBottom = Stone[count].transform.position.y - bottom;
+        ColiderStone();
+    }
+
+    public virtual void CheckStoneBullet(int countBullet, float dirBulletRight, float dirBulletLeft, float dirBulletTop, float dirBulletBottom, float top, float bottom, float left, float right)
+    {
+        dirStoneLeft = Stone[countBullet].transform.position.x - left;
+        dirStoneRight = Stone[countBullet].transform.position.x + right;
+        dirStoneTop = Stone[countBullet].transform.position.y + top;
+        dirStoneBottom = Stone[countBullet].transform.position.y - bottom;
+        if (dirBulletRight > dirStoneLeft && dirBulletTop > dirStoneBottom && dirBulletBottom < dirStoneTop && dirBulletLeft < dirStoneRight && Stone[countBullet].activeInHierarchy )
+        {
+            Stone[countBullet].SetActive(false);
+            Debug.Log("Stone: " + countBullet);
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void ColiderStone()
+    {
+        if (dirRight > dirStoneLeft && dirUp > dirStoneBottom && dirDown < dirStoneTop && dirLeft < dirStoneRight && transform.position.x == 0)
+        {
+            transform.position = new Vector3(-0.1f, transform.position.y, 0);
+            GameButton.SetActive(true);
+            Sound("Hit");
+        }
+    }
+
+    private void Spawn_Stone(int countBullet)
+    {
+        Stone[countBullet].SetActive(true);
+    }
+
     public virtual float DirPipeUpLeft(int count, float Left)
     {
         return Pipe_up[count].transform.position.x - Left;
