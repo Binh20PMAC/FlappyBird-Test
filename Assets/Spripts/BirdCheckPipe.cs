@@ -145,6 +145,7 @@ public class BirdCheckPipe : MonoBehaviour
         if (dirBulletRight > dirStoneLeft && dirBulletTop > dirStoneBottom && dirBulletBottom < dirStoneTop && dirBulletLeft < dirStoneRight && Stone[countBullet].activeInHierarchy )
         {
             Stone[countBullet].SetActive(false);
+            AudioManager.instance.PlaySFX("Boom");
             Debug.Log("Stone: " + countBullet);
             gameObject.SetActive(false);
         }

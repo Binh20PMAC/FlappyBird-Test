@@ -108,11 +108,11 @@ public class NormalBird : MonoBehaviour
 
     public virtual void Fire()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKey(KeyCode.F))
         {
-            //if (Time.time - last < cooldown)
-            //{ return; }
-            //last = Time.time;
+            if (Time.time - last < 0.25f)
+            { return; }
+            last = Time.time;
 
             GameObject bullet = BulletPool.instance.GetPooledObject();
 
@@ -120,6 +120,7 @@ public class NormalBird : MonoBehaviour
             {
                 bullet.transform.position = transform.position;
                 bullet.SetActive(true);
+                AudioManager.instance.PlaySFX("Fire");
             }
         }
 
