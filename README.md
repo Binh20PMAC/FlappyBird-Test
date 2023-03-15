@@ -9,6 +9,7 @@
 - Đã làm SlowBird (chưa hoàn chỉnh)
 - Đã làm Cooldown skill SlowBird
 - Đã làm Bird check Pipe List
+- Đã làm Setting Audio
 
 
 - Ấn F để bắn
