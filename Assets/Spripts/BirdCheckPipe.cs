@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.ShaderData;
+using UnityEngine.SocialPlatforms.Impl;
+using TMPro;
 
 public class BirdCheckPipe : MonoBehaviour
 {
@@ -39,6 +42,20 @@ public class BirdCheckPipe : MonoBehaviour
     int count = 0;
     int countSpawnStone = 0;
 
+    [SerializeField]
+    private TMP_Text ScoreText;
+
+    [SerializeField]
+    private TMP_Text HighScoreText;
+
+    [SerializeField]
+    private float score;
+    [SerializeField]
+    private float highScore;
+
+    bool pass = false;
+
+
     private void Update()
     {
         //dirUp = transform.position.y + 0.2f;
@@ -61,13 +78,12 @@ public class BirdCheckPipe : MonoBehaviour
 
         if (Pipe_up[countSpawnStone].transform.position.x < dirLeft - 3.5f)
         {
+            Spawn_Stone(countSpawnStone);
             countSpawnStone++;
             if (countSpawnStone == 3)
             {
                 countSpawnStone = 0;
             }
-
-            Spawn_Stone(countSpawnStone);
         }
 
         Debug.Log(count);
@@ -81,7 +97,49 @@ public class BirdCheckPipe : MonoBehaviour
                 CheckStone(0.6f, 0.6f, 0.6f, 0.6f);
             }
         }
+        ScoreUp(Pipe_up[count], Pipe_down[count]);
 
+    }
+
+    public void ScoreUp(GameObject topPipe, GameObject bottomPipe)
+    {
+        highScore = PlayerPrefs.GetFloat("highscore", 0);
+        HighScoreText.text = "HighScore: " + highScore.ToString();
+
+
+        if (transform.position.x < topPipe.transform.position.x && !pass)
+        {
+            if (transform.position.x > dirPipeUpLeft && transform.position.y > bottomPipe.transform.position.y && transform.position.y < topPipe.transform.position.y && transform.position.x == 0)
+            {
+                score++;
+                pass = true;
+                AudioManager.instance.PlaySFX("Point");
+            }
+
+        }
+        if (transform.position.x > bottomPipe.transform.position.x)
+        {
+            pass = false;
+        }
+        //temp++;
+        //if(temp > 10 && Dash == true)
+        //{
+        //    temp = 80;
+        //}
+        //if (temp == 80)
+        //{
+        //    temp /= 80;
+        //    score++;
+        //    AudioManager.instance.PlaySFX("Point");
+        //}
+        ScoreText.text = score.ToString();
+
+        if (score > highScore)
+        {
+
+            PlayerPrefs.SetFloat("highscore", score);
+        }
+        HighScoreText.text = "HighScore: " + highScore.ToString();
 
     }
 
@@ -142,7 +200,7 @@ public class BirdCheckPipe : MonoBehaviour
         dirStoneRight = Stone[countBullet].transform.position.x + right;
         dirStoneTop = Stone[countBullet].transform.position.y + top;
         dirStoneBottom = Stone[countBullet].transform.position.y - bottom;
-        if (dirBulletRight > dirStoneLeft && dirBulletTop > dirStoneBottom && dirBulletBottom < dirStoneTop && dirBulletLeft < dirStoneRight && Stone[countBullet].activeInHierarchy )
+        if (dirBulletRight > dirStoneLeft && dirBulletTop > dirStoneBottom && dirBulletBottom < dirStoneTop && dirBulletLeft < dirStoneRight && Stone[countBullet].activeInHierarchy)
         {
             Stone[countBullet].SetActive(false);
             AudioManager.instance.PlaySFX("Boom");
@@ -201,12 +259,12 @@ public class BirdCheckPipe : MonoBehaviour
         AudioManager.instance.PlaySFX(sound);
     }
 
-    private void FixedUpdate()
-    {
-        if (dirRight > dirPipeUpLeft && dirLeft < dirPipeDownRight && transform.position.x == 0)
-        {
-            Score.instance.ScoreUp();
-        }
+    //private void FixedUpdate()
+    //{
+    //    if (dirRight > dirPipeUpLeft && dirLeft < dirPipeDownRight && transform.position.x == 0)
+    //    {
+    //        Score.instance.ScoreUp();
+    //    }
 
-    }
+    //}
 }

@@ -6227,9 +6227,17 @@ PrefabInstance:
       value: YellowBird
       objectReference: {fileID: 0}
     - target: {fileID: 8589925818035846107, guid: 7084bd4e68fbf6243a77ff93aba74947, type: 3}
+      propertyPath: ScoreText
+      value: 
+      objectReference: {fileID: 1641092957}
+    - target: {fileID: 8589925818035846107, guid: 7084bd4e68fbf6243a77ff93aba74947, type: 3}
       propertyPath: GameButton
       value: 
       objectReference: {fileID: 2096833387}
+    - target: {fileID: 8589925818035846107, guid: 7084bd4e68fbf6243a77ff93aba74947, type: 3}
+      propertyPath: HighScoreText
+      value: 
+      objectReference: {fileID: 670031111}
     - target: {fileID: 8589925818035846107, guid: 7084bd4e68fbf6243a77ff93aba74947, type: 3}
       propertyPath: Stone.Array.size
       value: 3

@@ -21,6 +21,8 @@ public class Score : MonoBehaviour
     [SerializeField]
     private float temp;
 
+    bool pass = false;
+
     public static bool Dash = false;
 
     private void Awake()
@@ -36,23 +38,38 @@ public class Score : MonoBehaviour
         HighScoreText.text = "HighScore: " + highScore.ToString();
     }
 
-    public void ScoreUp()
+    public void ScoreUp(GameObject topPipe, GameObject bottomPipe)
     {
         highScore = PlayerPrefs.GetFloat("highscore1", 0);
 
         HighScoreText.text = "HighScore: " + highScore.ToString();
 
-        temp++;
-        if(temp > 10 && Dash == true)
+
+        if (transform.position.x < topPipe.transform.position.x && !pass)
         {
-            temp = 80;
+            if (transform.position.y > bottomPipe.transform.position.y && transform.position.y < topPipe.transform.position.y)
+            {
+                score++;
+                pass = true;
+                AudioManager.instance.PlaySFX("Point");
+            }
+
         }
-        if (temp == 80)
+        if (transform.position.x > bottomPipe.transform.position.x)
         {
-            temp /= 80;
-            score++;
-            AudioManager.instance.PlaySFX("Point");
+            pass = false;
         }
+        //temp++;
+        //if(temp > 10 && Dash == true)
+        //{
+        //    temp = 80;
+        //}
+        //if (temp == 80)
+        //{
+        //    temp /= 80;
+        //    score++;
+        //    AudioManager.instance.PlaySFX("Point");
+        //}
         ScoreText.text = score.ToString();
 
         if (score > highScore)

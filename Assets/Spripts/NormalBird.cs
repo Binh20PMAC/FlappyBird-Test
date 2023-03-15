@@ -51,7 +51,7 @@ public class NormalBird : MonoBehaviour
                 CircleCooldown.fillAmount -= 1 / cooldown * Time.deltaTime;
                 second -= 5 / cooldown * Time.deltaTime;
             }
-           
+
         }
         if (PlayerPrefs.GetInt("selectedOptions") == 2)
         {
@@ -66,9 +66,9 @@ public class NormalBird : MonoBehaviour
             CircleCooldown.fillAmount -= 1 / cooldown * Time.deltaTime;
         }
 
-        
+
         time.text = Mathf.Round(second).ToString();
-        if(second <= 0)
+        if (second <= 0)
         {
 
             time.gameObject.SetActive(false);
@@ -118,7 +118,7 @@ public class NormalBird : MonoBehaviour
 
             if (bullet != null)
             {
-                bullet.transform.position = transform.position;
+                bullet.transform.position = new Vector3(0.5f, transform.position.y, 0);
                 bullet.SetActive(true);
                 AudioManager.instance.PlaySFX("Fire");
             }

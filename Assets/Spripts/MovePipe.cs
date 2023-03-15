@@ -93,12 +93,12 @@ public class MovePipe : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (bird.transform.position.x < upXLeft && bird.transform.position.x > downXRight && bird.transform.position.x == 0)
-        {
-            Score.instance.ScoreUp();
-        }
+    //private void FixedUpdate()
+    //{
+    //    if (bird.transform.position.x < upXLeft && bird.transform.position.x > downXRight && bird.transform.position.x == 0)
+    //    {
+    //        Score.instance.ScoreUp();
+    //    }
    
-    }
+    //}
 }

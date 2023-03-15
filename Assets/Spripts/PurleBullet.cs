@@ -28,15 +28,15 @@ public class PurleBullet : BirdCheckPipe
     void Update()
     {
         dirRightBullet = transform.position.x;
-        dirLeftBullet = transform.position.x - 1f;
-        dirUpBullet = transform.position.y + 0.2f;
-        dirDownBullet = transform.position.y - 0.2f;
+        dirLeftBullet = transform.position.x - 0.5f;
+        dirUpBullet = transform.position.y + 0.1f;
+        dirDownBullet = transform.position.y - 0.1f;
 
         SpaceBullet = Space(transform, 1f);
 
 
 
-        if (DirPipeUpLeft(countBullet, 0.6f) < dirLeftBullet)
+        if (DirPipeUpRight(countBullet, 0.6f) < dirLeftBullet)
         {
             countBullet++;
             if (countBullet == 3)
@@ -61,7 +61,7 @@ public class PurleBullet : BirdCheckPipe
                 gameObject.SetActive(false);
             }
 
-            CheckStoneBullet(countBullet, dirRightBullet, dirLeftBullet, dirUpBullet, dirDownBullet, 0.6f, 0.6f, 0.6f, 0.6f);
+            CheckStoneBullet(countBullet, dirRightBullet, dirLeftBullet, dirUpBullet, dirDownBullet, 0.4f, 0.4f, 0.4f, 0.4f);
         }
         if (transform.position.x > 6f)
         {
