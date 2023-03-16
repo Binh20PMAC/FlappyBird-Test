@@ -118,7 +118,7 @@ public class NormalBird : MonoBehaviour
 
             if (bullet != null)
             {
-                bullet.transform.position = new Vector3(0.5f, transform.position.y, 0);
+                bullet.transform.position = new Vector3(0.7f, transform.position.y, 0);
                 bullet.SetActive(true);
                 AudioManager.instance.PlaySFX("Fire");
             }

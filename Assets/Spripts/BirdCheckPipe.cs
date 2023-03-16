@@ -143,7 +143,7 @@ public class BirdCheckPipe : MonoBehaviour
 
     }
 
-    public virtual void ThisPosition(Transform Pos, float up, float down, float left, float right)
+    private void ThisPosition(Transform Pos, float up, float down, float left, float right)
     {
         dirUp = Pos.position.y + up;
         dirDown = Pos.position.y - down;
@@ -151,7 +151,7 @@ public class BirdCheckPipe : MonoBehaviour
         dirRight = Pos.position.x + right;
     }
 
-    public virtual float Space(Transform Pos, float Space)
+    public float Space(Transform Pos, float Space)
     {
         return Pos.position.x + Space;
     }
@@ -194,7 +194,7 @@ public class BirdCheckPipe : MonoBehaviour
         ColiderStone();
     }
 
-    public virtual void CheckStoneBullet(int countBullet, float dirBulletRight, float dirBulletLeft, float dirBulletTop, float dirBulletBottom, float top, float bottom, float left, float right)
+    public void CheckStoneBullet(int countBullet, float dirBulletRight, float dirBulletLeft, float dirBulletTop, float dirBulletBottom, float top, float bottom, float left, float right)
     {
         dirStoneLeft = Stone[countBullet].transform.position.x - left;
         dirStoneRight = Stone[countBullet].transform.position.x + right;
