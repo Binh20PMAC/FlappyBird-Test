@@ -34,22 +34,34 @@ public class NormalBird : MonoBehaviour
     {
         BirdJump(gameObject);
         Fire();
-
+        if (PlayerPrefs.GetInt("selectedOptions") == 0)
+        {
+            CircleCooldown.gameObject.SetActive(false);
+            time.gameObject.SetActive(false);
+        }
         if (PlayerPrefs.GetInt("selectedOptions") == 1)
         {
             if (Input.GetKey(KeyCode.Q))
             {
-                if (Input.GetKey(KeyCode.Q) && CircleCooldown.fillAmount < 0.99f)
+                if (Input.GetKey(KeyCode.Q) && CircleCooldown.fillAmount <= 1f)
                 {
-                    StartCoroutine(Timer());
-                    CircleCooldown.fillAmount += 5 / cooldown * Time.deltaTime;
-                    second = CircleCooldown.fillAmount * 5f;
+
+                    if (BirdCheckPipe.itemIcrease)
+                    {
+                        CircleCooldown.fillAmount = 0f;
+                    }
+                    if (CircleCooldown.fillAmount < 1f)
+                    {
+                        StartCoroutine(Timer());
+                        CircleCooldown.fillAmount += 5 / cooldown * Time.deltaTime;
+                        second = CircleCooldown.fillAmount * 5f;
+                    }
                 }
             }
             else
             {
-                CircleCooldown.fillAmount -= 1 / cooldown * Time.deltaTime;
-                second -= 5 / cooldown * Time.deltaTime;
+                CircleCooldown.fillAmount -= (BirdCheckPipe.itemIcrease) ? (1f) : (1 / cooldown * Time.deltaTime);
+                second -= (BirdCheckPipe.itemIcrease) ? (5) : (5 / cooldown * Time.deltaTime);
             }
 
         }
@@ -62,8 +74,8 @@ public class NormalBird : MonoBehaviour
                     CircleCooldown.fillAmount = 1f;
                     second = 5f;
                 }
-            second -= 5 / cooldown * Time.deltaTime;
-            CircleCooldown.fillAmount -= 1 / cooldown * Time.deltaTime;
+            CircleCooldown.fillAmount -= (BirdCheckPipe.itemIcrease) ? (1f) : (1 / cooldown * Time.deltaTime);
+            second = CircleCooldown.fillAmount * 5f;
         }
 
 

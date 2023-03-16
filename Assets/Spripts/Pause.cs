@@ -44,6 +44,7 @@ public class Pause : MonoBehaviour
 
     public void Continute()
     {
+        AudioManager.instance.PlaySFX("Play");
         pause = !pause;
         if (!pause)
         {

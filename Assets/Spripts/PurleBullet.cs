@@ -63,7 +63,7 @@ public class PurleBullet : BirdCheckPipe
 
             CheckStoneBullet(countBullet, dirRightBullet, dirLeftBullet, dirUpBullet, dirDownBullet, 0.6f, 0.6f, 0.6f, 0.6f);
         }
-        if (transform.position.x > 6f)
+        if (transform.position.x > ColliderPipe.screenWidthRight - 1f)
         {
             gameObject.SetActive(false);
         }

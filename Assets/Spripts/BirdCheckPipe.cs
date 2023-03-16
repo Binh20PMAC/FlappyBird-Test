@@ -11,13 +11,14 @@ public class BirdCheckPipe : MonoBehaviour
 
     [SerializeField]
     private GameObject GameButton;
-
     [SerializeField]
-    private List<GameObject> Pipe_up;
+    private GameObject[] Pipe_up;
     [SerializeField]
-    private List<GameObject> Pipe_down;
+    private GameObject[] Pipe_down;
     [SerializeField]
-    private List<GameObject> Stone;
+    private GameObject[] Stone;
+    [SerializeField]
+    private GameObject[] Item;
 
     private float SpaceBird;
 
@@ -40,6 +41,7 @@ public class BirdCheckPipe : MonoBehaviour
     private float dirRight;
 
     int count = 0;
+    int countItem = 0;
     int countSpawnStone = 0;
 
     [SerializeField]
@@ -55,6 +57,7 @@ public class BirdCheckPipe : MonoBehaviour
 
     bool pass = false;
 
+    public static bool itemIcrease = false;
 
     private void Update()
     {
@@ -70,15 +73,22 @@ public class BirdCheckPipe : MonoBehaviour
         if (Pipe_up[count].transform.position.x < dirLeft - 2f)
         {
             count++;
-            if (count == 3)
+            if (count == Pipe_up.Length)
             {
                 count = 0;
             }
         }
 
-        if (Pipe_up[countSpawnStone].transform.position.x < dirLeft - 3.5f)
+        if (Item[countItem].transform.position.x < dirLeft + 1f)
+        {
+            itemIcrease = false;
+        }
+
+        if (Pipe_up[countSpawnStone].transform.position.x < ColliderPipe.screenWidthLeft)
         {
             Spawn_Stone(countSpawnStone);
+            if (Random.Range(0, 8) == 0)
+                Item[countItem].SetActive(true);
             countSpawnStone++;
             if (countSpawnStone == 3)
             {
@@ -86,7 +96,7 @@ public class BirdCheckPipe : MonoBehaviour
             }
         }
 
-        Debug.Log(count);
+        Debug.Log(countItem);
 
         if (Pipe_up[count].transform.position.x < SpaceBird && Pipe_up[count].transform.position.x > dirLeft - 1f)
         {
@@ -96,8 +106,17 @@ public class BirdCheckPipe : MonoBehaviour
             {
                 CheckStone(0.6f, 0.6f, 0.6f, 0.6f);
             }
+            if (Item[countItem].activeInHierarchy)
+            {
+                CheckItem(0.6f, 0.6f, 0.6f, 0.6f);
+            }
         }
         ScoreUp(Pipe_up[count], Pipe_down[count]);
+
+        if (PlayerPrefs.GetInt("selectedOptions") == 0)
+        {
+            Item[countItem].SetActive(false);
+        }
 
     }
 
@@ -194,6 +213,15 @@ public class BirdCheckPipe : MonoBehaviour
         ColiderStone();
     }
 
+    private void CheckItem(float top, float bottom, float left, float right)
+    {
+        dirStoneLeft = Item[countItem].transform.position.x - left;
+        dirStoneRight = Item[countItem].transform.position.x + right;
+        dirStoneTop = Item[countItem].transform.position.y + top;
+        dirStoneBottom = Item[countItem].transform.position.y - bottom;
+        ColiderStoneItem();
+    }
+
     public void CheckStoneBullet(int countBullet, float dirBulletRight, float dirBulletLeft, float dirBulletTop, float dirBulletBottom, float top, float bottom, float left, float right)
     {
         dirStoneLeft = Stone[countBullet].transform.position.x - left;
@@ -216,6 +244,16 @@ public class BirdCheckPipe : MonoBehaviour
             transform.position = new Vector3(-0.1f, transform.position.y, 0);
             GameButton.SetActive(true);
             Sound("Hit");
+        }
+    }
+
+    private void ColiderStoneItem()
+    {
+        if (dirRight > dirStoneLeft && dirUp > dirStoneBottom && dirDown < dirStoneTop && dirLeft < dirStoneRight && transform.position.x == 0)
+        {
+            itemIcrease = true;
+            Item[countItem].SetActive(false);
+            AudioManager.instance.PlaySFX("Item");
         }
     }
 

@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.instance.PlaySFX("Play");
         if (!PlayerPrefs.HasKey("selectedOptions"))
         {
             selectedOption = 0;
