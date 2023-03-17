@@ -6,7 +6,7 @@
 - Đã làm đạn check Pipe List
 - Đã làm Dash
 - Đã làm Cooldown Dash
-- Đã làm SlowBird (chưa hoàn chỉnh)
+- Đã làm SlowBird 
 - Đã làm Cooldown skill SlowBird
 - Đã làm Bird check Pipe List
 - Đã làm Setting Audio
