@@ -34,11 +34,11 @@ public class PurleBullet : BirdCheckPipe
 
 
 
-        SpaceBullet = Space(transform, 1f);
+        SpaceBullet = dirLeftBullet + 1f;
 
 
 
-        if (DirPipeUpRight(countBullet, 0.6f) < dirLeftBullet - 1.5f)
+        if (DirPipeUpRight(countBullet, 0.6f) < dirLeftBullet - 1f)
         {
             countBullet++;
             if (countBullet == 3)

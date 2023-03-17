@@ -70,7 +70,7 @@ public class BirdCheckPipe : MonoBehaviour
         //SpaceBird = transform.position.x + 3;
         SpaceBird = Space(transform, 3f);
 
-        if (Pipe_up[count].transform.position.x < dirLeft - 1f)
+        if (Pipe_up[count].transform.position.x + 0.6f < dirLeft - 1f)
         {
             count++;
             if (count == Pipe_up.Length)
@@ -134,7 +134,7 @@ public class BirdCheckPipe : MonoBehaviour
                 pass = true;
                 Sound("Point");
             }
-            if(NormalBird.isDash && transform.position.x < topPipe.transform.position.x && !pass)
+            if (NormalBird.isDash && transform.position.x < topPipe.transform.position.x && !pass)
             {
                 score++;
                 pass = true;
