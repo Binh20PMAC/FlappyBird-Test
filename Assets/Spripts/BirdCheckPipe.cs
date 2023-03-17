@@ -134,6 +134,12 @@ public class BirdCheckPipe : MonoBehaviour
                 pass = true;
                 Sound("Point");
             }
+            if(NormalBird.isDash && transform.position.x < topPipe.transform.position.x && !pass)
+            {
+                score++;
+                pass = true;
+                Sound("Point");
+            }
 
         }
         if (transform.position.x > bottomPipe.transform.position.x)
@@ -180,13 +186,13 @@ public class BirdCheckPipe : MonoBehaviour
         dirPipeUpLeft = Pipe_up[count].transform.position.x - left;
         dirPipeUpRight = Pipe_up[count].transform.position.x + right;
         dirPipeUpCenter = Pipe_up[count].transform.position.y;
-
-        if (dirRight > dirPipeUpLeft && dirUp > dirPipeUpCenter && dirLeft < dirPipeUpRight && transform.position.x == 0)
-        {
-            transform.position = new Vector3(Pipe_up[count].transform.position.x, Pipe_up[count].transform.position.y, 0);
-            Sound("Hit");
-            GameButton.SetActive(true);
-        }
+        if (!NormalBird.isDash)
+            if (dirRight > dirPipeUpLeft && dirUp > dirPipeUpCenter && dirLeft < dirPipeUpRight && transform.position.x == 0)
+            {
+                transform.position = new Vector3(Pipe_up[count].transform.position.x, Pipe_up[count].transform.position.y, 0);
+                Sound("Hit");
+                GameButton.SetActive(true);
+            }
     }
 
 
@@ -195,13 +201,13 @@ public class BirdCheckPipe : MonoBehaviour
         dirPipeDownLeft = Pipe_down[count].transform.position.x - left;
         dirPipeDownRight = Pipe_down[count].transform.position.x + right;
         dirPipeDownCenter = Pipe_down[count].transform.position.y;
-
-        if (dirRight > dirPipeDownLeft && dirDown < dirPipeDownCenter && dirLeft < dirPipeDownRight && transform.position.x == 0)
-        {
-            transform.position = new Vector3(Pipe_down[count].transform.position.x, Pipe_down[count].transform.position.y, 0);
-            Sound("Hit");
-            GameButton.SetActive(true);
-        }
+        if (!NormalBird.isDash)
+            if (dirRight > dirPipeDownLeft && dirDown < dirPipeDownCenter && dirLeft < dirPipeDownRight && transform.position.x == 0)
+            {
+                transform.position = new Vector3(Pipe_down[count].transform.position.x, Pipe_down[count].transform.position.y, 0);
+                Sound("Hit");
+                GameButton.SetActive(true);
+            }
     }
 
     private void CheckStone(float top, float bottom, float left, float right)
@@ -210,7 +216,8 @@ public class BirdCheckPipe : MonoBehaviour
         dirStoneRight = Stone[count].transform.position.x + right;
         dirStoneTop = Stone[count].transform.position.y + top;
         dirStoneBottom = Stone[count].transform.position.y - bottom;
-        ColiderStone();
+        if (!NormalBird.isDash)
+            ColiderStone();
     }
 
     private void CheckItem(float top, float bottom, float left, float right)
@@ -235,6 +242,8 @@ public class BirdCheckPipe : MonoBehaviour
             Debug.Log("Stone: " + countBullet);
             gameObject.SetActive(false);
         }
+
+
     }
 
     private void ColiderStone()

@@ -27,10 +27,12 @@ public class PurleBullet : BirdCheckPipe
     // Update is called once per frame
     void Update()
     {
-        dirRightBullet = transform.position.x;
-        dirLeftBullet = transform.position.x - 0.8f;
+        dirRightBullet = transform.position.x + 0.3f;
+        dirLeftBullet = transform.position.x - 0.3f;
         dirUpBullet = transform.position.y + 0.2f;
         dirDownBullet = transform.position.y - 0.2f;
+
+
 
         SpaceBullet = Space(transform, 1f);
 
@@ -61,7 +63,7 @@ public class PurleBullet : BirdCheckPipe
                 gameObject.SetActive(false);
             }
 
-            CheckStoneBullet(countBullet, dirRightBullet, dirLeftBullet, dirUpBullet, dirDownBullet, 0.6f, 0.6f, 0.6f, 0.6f);
+            CheckStoneBullet(countBullet, dirRightBullet, dirLeftBullet, dirUpBullet, dirDownBullet, 0.8f, 0.8f, 0.8f, 0.8f);
         }
         if (transform.position.x > ColliderPipe.screenWidthRight - 1f)
         {

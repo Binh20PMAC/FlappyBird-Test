@@ -26,10 +26,10 @@ public class NormalBird : MonoBehaviour
     private Image imgDash;
     [SerializeField]
     private Image imgSlow;
-
-
     [SerializeField]
     private TMP_Text time;
+
+    public static bool isDash = false;
 
     private float second = 5f;
 
@@ -138,7 +138,7 @@ public class NormalBird : MonoBehaviour
 
             if (bullet != null)
             {
-                bullet.transform.position = new Vector3(0.7f, transform.position.y, 0);
+                bullet.transform.position = new Vector3(0.2f, transform.position.y, 0);
                 bullet.SetActive(true);
                 AudioManager.instance.PlaySFX("Fire");
             }
@@ -150,10 +150,11 @@ public class NormalBird : MonoBehaviour
     IEnumerator Dash()
     {
         ColliderPipe.speed = 8;
-        Score.Dash = true;
+        isDash = true;
         yield return new WaitForSeconds(0.3f);
-        Score.Dash = false;
         ColliderPipe.speed = 1;
+        yield return new WaitForSeconds(2f);
+        isDash = false;
     }
 
     IEnumerator Timer()
