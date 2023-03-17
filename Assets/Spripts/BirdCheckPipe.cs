@@ -134,7 +134,7 @@ public class BirdCheckPipe : MonoBehaviour
                 pass = true;
                 Sound("Point");
             }
-            if (NormalBird.isDash && transform.position.x < topPipe.transform.position.x && !pass)
+            if (NormalBird.isDash && transform.position.x < topPipe.transform.position.x && !pass && transform.position.x == 0)
             {
                 score++;
                 pass = true;
