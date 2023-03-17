@@ -38,7 +38,7 @@ public class PurleBullet : BirdCheckPipe
 
 
 
-        if (DirPipeUpRight(countBullet, 0.6f) < dirLeftBullet)
+        if (DirPipeUpRight(countBullet, 0.6f) < dirLeftBullet - 1.5f)
         {
             countBullet++;
             if (countBullet == 3)

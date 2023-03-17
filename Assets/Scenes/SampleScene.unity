@@ -3564,7 +3564,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9f917552066ddd744907f2b67a24ba68, type: 3}
   - name: Point
     clip: {fileID: 8300000, guid: 9cfb5daa5fbaaac4399de5efd23d8617, type: 3}
-  - name: 
+  - name: Play
     clip: {fileID: 8300000, guid: 12487190072e3854e87ad2f2891af55e, type: 3}
   - name: Die
     clip: {fileID: 8300000, guid: 0911ed83d9f8023468bdab0cedcbe9d2, type: 3}

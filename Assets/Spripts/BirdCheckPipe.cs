@@ -70,7 +70,7 @@ public class BirdCheckPipe : MonoBehaviour
         //SpaceBird = transform.position.x + 3;
         SpaceBird = Space(transform, 3f);
 
-        if (Pipe_up[count].transform.position.x < dirLeft - 2f)
+        if (Pipe_up[count].transform.position.x < dirLeft - 1f)
         {
             count++;
             if (count == Pipe_up.Length)
@@ -242,7 +242,6 @@ public class BirdCheckPipe : MonoBehaviour
             Debug.Log("Stone: " + countBullet);
             gameObject.SetActive(false);
         }
-
 
     }
 
