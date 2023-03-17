@@ -132,7 +132,7 @@ public class BirdCheckPipe : MonoBehaviour
             {
                 score++;
                 pass = true;
-                AudioManager.instance.PlaySFX("Point");
+                Sound("Point");
             }
 
         }
@@ -253,7 +253,7 @@ public class BirdCheckPipe : MonoBehaviour
         {
             itemIcrease = true;
             Item[countItem].SetActive(false);
-            AudioManager.instance.PlaySFX("Item");
+            Sound("Item");
         }
     }
 

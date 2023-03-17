@@ -22,6 +22,11 @@ public class NormalBird : MonoBehaviour
 
     [SerializeField]
     private Image CircleCooldown;
+    [SerializeField]
+    private Image imgDash;
+    [SerializeField]
+    private Image imgSlow;
+
 
     [SerializeField]
     private TMP_Text time;
@@ -37,10 +42,13 @@ public class NormalBird : MonoBehaviour
         if (PlayerPrefs.GetInt("selectedOptions") == 0)
         {
             CircleCooldown.gameObject.SetActive(false);
+            imgDash.gameObject.SetActive(false);
+            imgSlow.gameObject.SetActive(false);
             time.gameObject.SetActive(false);
         }
         if (PlayerPrefs.GetInt("selectedOptions") == 1)
         {
+            imgDash.gameObject.SetActive(false);
             if (Input.GetKey(KeyCode.Q))
             {
                 if (Input.GetKey(KeyCode.Q) && CircleCooldown.fillAmount <= 1f)
@@ -53,7 +61,7 @@ public class NormalBird : MonoBehaviour
                     if (CircleCooldown.fillAmount < 1f)
                     {
                         StartCoroutine(Timer());
-                        CircleCooldown.fillAmount += 5 / cooldown * Time.deltaTime;
+                        CircleCooldown.fillAmount += 2.5f / cooldown * Time.deltaTime;
                         second = CircleCooldown.fillAmount * 5f;
                     }
                 }
@@ -137,6 +145,7 @@ public class NormalBird : MonoBehaviour
         }
 
     }
+    
 
     IEnumerator Dash()
     {

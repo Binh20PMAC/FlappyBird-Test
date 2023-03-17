@@ -29,8 +29,8 @@ public class PurleBullet : BirdCheckPipe
     {
         dirRightBullet = transform.position.x;
         dirLeftBullet = transform.position.x - 0.8f;
-        dirUpBullet = transform.position.y + 0.4f;
-        dirDownBullet = transform.position.y - 0.4f;
+        dirUpBullet = transform.position.y + 0.2f;
+        dirDownBullet = transform.position.y - 0.2f;
 
         SpaceBullet = Space(transform, 1f);
 
