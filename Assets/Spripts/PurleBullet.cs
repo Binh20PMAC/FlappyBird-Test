@@ -27,10 +27,10 @@ public class PurleBullet : BirdCheckPipe
     // Update is called once per frame
     void Update()
     {
-        dirRightBullet = transform.position.x + 0.3f;
-        dirLeftBullet = transform.position.x - 0.3f;
-        dirUpBullet = transform.position.y + 0.2f;
-        dirDownBullet = transform.position.y - 0.2f;
+        dirRightBullet = transform.position.x + 0.2f;
+        dirLeftBullet = transform.position.x - 0.2f;
+        dirUpBullet = transform.position.y + 0.1f;
+        dirDownBullet = transform.position.y - 0.1f;
 
 
 
